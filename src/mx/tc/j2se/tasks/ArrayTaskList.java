@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class ArrayTaskList<task> {
 
-    // Define INITIAL_CAPACITY, size of elements of custom ArrayList
-    private static final int INITIAL_CAPACITY = 10;
+    // Define initialcapacity, size of elements of custom ArrayList
+    private static final int initialcapacity = 10;
     private int size = 0;
     private Task elementData[] = {};
 
@@ -13,7 +13,7 @@ public class ArrayTaskList<task> {
      * constructor of ArrayTaskList
      */
     public ArrayTaskList() {
-        elementData = new Task[INITIAL_CAPACITY];
+        elementData = new Task[initialcapacity];
     }
 
     /**
@@ -22,7 +22,7 @@ public class ArrayTaskList<task> {
      */
     public void add(Task task) {
         if (size == elementData.length) {
-            ensureCapacity(); // increase current capacity of list, make it
+            ensureCapacity(); // increase current capacity of list,to make it
             // double.
         }
         elementData[size++] = task;
@@ -35,21 +35,34 @@ public class ArrayTaskList<task> {
     }
     public int size()
     {
+
         return size;
     }
-    public boolean remove(Task task) {
-        // if index is negative or greater than size of size, we throw
-        // Exception.
+
+    public boolean remove(Task task)  {
+
 
         for (int i = 0; i < size ; i++) {
+            boolean flag=false;
             if(elementData[i] == task)
             {
+                flag=true;
                 for(int k=i;k<size;k++) {
 
                     elementData[k] = elementData[k+ 1];
                 }
 
             }
+            try {
+                if (flag = false) {
+                    throw new TaskCannotBeFoundException();
+                }
+            }
+            catch(TaskCannotBeFoundException e)
+            {
+                System.out.println(e.getMessage());
+            }
+
             size--;
             break;
         }
@@ -61,10 +74,18 @@ public class ArrayTaskList<task> {
     public Task getTask(int index) {
         // if index is negative or greater than size of size, we throw
         // Exception.
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size "
-                    + index);
+        try {
+            if (index < 0 || index >= size) {
+                throw new IndexOutOfBoundsException();
+
+            }
         }
+        catch(Exception e)
+        {
+            System.out.println("index cannot be negative or greater than size");
+
+        }
+
         return (Task) elementData[index]; // return value on index.
     }
     public void display() {
@@ -73,6 +94,7 @@ public class ArrayTaskList<task> {
             System.out.println(elementData[i].getTitle()+ " ");
         }
     }
+    //displays task
     public ArrayTaskList incoming(int from, int to)
     {
         ArrayTaskList arr=new ArrayTaskList();
@@ -88,6 +110,7 @@ public class ArrayTaskList<task> {
         }
         return arr;
     }
+    //returns tasks of given period of time
 }
     /*boolean remove (Task task)
     {
