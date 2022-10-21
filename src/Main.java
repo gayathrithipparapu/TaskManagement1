@@ -16,9 +16,11 @@ public class Main {
         t3.add(t1);
         t3.add(t2);
         t3.add(t4);
-        t3.remove(t1);
-        t3.display();
-        System.out.print(t3.getTask(1).getTitle());
+        /*t3.remove(t1);
+        t3.display();*/
+
+        System.out.println(t3.getTask(1).getTitle());
+        t3.incoming(5,15).display();
 
 
 

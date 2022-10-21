@@ -73,17 +73,20 @@ public class ArrayTaskList<task> {
             System.out.println(elementData[i].getTitle()+ " ");
         }
     }
-    public void ArrayTaskListincoming(int from, int to)
+    public ArrayTaskList incoming(int from, int to)
     {
-        for(int i=from;i<=to;i++)
+        ArrayTaskList arr=new ArrayTaskList();
+        for(int i=0;i<size;i++)
         {
-            if(elementData[i].getStartTime()>=from && to<=elementData[i].getStartTime())
+            if(elementData[i].getStartTime()>=from && to>=elementData[i].getStartTime())
             {
-                return;
+                arr.add(elementData[i]);
+
 
             }
 
         }
+        return arr;
     }
 }
     /*boolean remove (Task task)
