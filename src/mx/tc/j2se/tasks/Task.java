@@ -1,4 +1,8 @@
 package mx.tc.j2se.tasks;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     String title;
     int start;
@@ -25,9 +29,11 @@ public class Task {
     boolean active;
     int current;
     boolean repeated;
+
+
     public Task (String title, int time){
         try {
-            if (time < 0) {
+            if ( time< 0) {
                 throw new IllegalArgumentException();
             }
         }
@@ -106,6 +112,11 @@ public class Task {
     {
         if(isRepeated())
            repeated=false;
+        else
+        {
+            this.current=time;
+        }
+
     }
     public int getStartTime()
     {
@@ -132,11 +143,13 @@ public class Task {
         if (isRepeated() == false)
         {
             repeated=true;
+
         }
     }
     public boolean isRepeated()
     {
         return repeated;
+
     }
     public int nextTimeAfter (int current)
     {

@@ -1,7 +1,8 @@
 package mx.tc.j2se.tasks;
 
-public class LinkedTaskList {
+public class LinkedTaskList extends AbstractTaskList{
     Node head; // head of list
+    int size=0;
 
     // Linked list Node.
     // This inner class is made static
@@ -35,6 +36,8 @@ public class LinkedTaskList {
     public void add(Task task)
     {
         // Create a new node with given data
+
+
         Node new_node = new Node(task);
 
 
@@ -49,6 +52,7 @@ public class LinkedTaskList {
             Node current = head;
             while (current.getNextNode() != null) {
                 current= current.next;
+                size++;
 
             }
 
@@ -58,6 +62,10 @@ public class LinkedTaskList {
 
         // Return the list by head
 
+    }
+    public int size()
+    {
+        return size;
     }
     public void display(){
         if(head != null){
@@ -70,13 +78,13 @@ public class LinkedTaskList {
         }
     }
 
-    public void remove(Task task1){
+    public boolean remove(Task task1){
         Node tmp = head;
         Node prev=null;
         // If head node to be deleted
         if (tmp != null && tmp.task== task1) {
             head = tmp.next; // Changed head
-            return;
+            return true;
         }
 
         // Search for the task to be deleted, keep track of
@@ -87,14 +95,15 @@ public class LinkedTaskList {
         }
         // If key was not present in linked list
         if (tmp == null)
-            return;
+            return false;
 
         // remove the node from linked list
         prev.next = tmp.next;
+        return true;
 
     }
 
-    public void getTask(int index)
+    public Task getTask(int index)
     {
         Node current = head;
 
@@ -106,7 +115,22 @@ public class LinkedTaskList {
                 break;
         }
 
-        System.out.println("task at index "+ index+" is "+ current.task);
+        return current.task;
+    }
+    public LinkedTaskList incoming(int from, int to)
+    {
+        LinkedTaskList larr=new LinkedTaskList();
+        Node current=head;
+        while(current.next!=null)
+        {
+            if(current.getData().getStartTime()>=from && to>=current.getData().getStartTime())
+            {
+                larr.add(current.getData());
+
+            }
+        }
+        return larr;
+
     }
 
 }

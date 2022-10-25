@@ -2,7 +2,7 @@ package mx.tc.j2se.tasks;
 import java.util.Arrays;
 
 
-public class ArrayTaskList<task> {
+public class ArrayTaskList extends AbstractTaskList{
 
     // Define initialcapacity, size of elements of custom ArrayList
     private static final int initialcapacity = 10;
@@ -91,7 +91,7 @@ public class ArrayTaskList<task> {
     public void display() {
         System.out.print("Displaying list : ");
         for (int i = 0; i < size; i++) {
-            System.out.println(elementData[i].getTitle()+ " ");
+            System.out.println(elementData[i].toString());
         }
     }
     //displays task
@@ -103,13 +103,13 @@ public class ArrayTaskList<task> {
             if(elementData[i].getStartTime()>=from && to>=elementData[i].getStartTime())
             {
                 arr.add(elementData[i]);
-
-
             }
 
         }
         return arr;
     }
+
+
     //returns tasks of given period of time
 }
     /*boolean remove (Task task)
