@@ -95,7 +95,7 @@ public class ArrayTaskList extends AbstractTaskList{
         }
     }
     //displays task
-    public ArrayTaskList incoming(int from, int to)
+    /*public ArrayTaskList incoming(int from, int to)
     {
         ArrayTaskList arr=new ArrayTaskList();
         for(int i=0;i<size;i++)
@@ -107,7 +107,7 @@ public class ArrayTaskList extends AbstractTaskList{
 
         }
         return arr;
-    }
+    }*/
 
 
     //returns tasks of given period of time

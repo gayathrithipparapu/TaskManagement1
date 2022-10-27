@@ -4,7 +4,8 @@ package mx.tc.j2se.tasks;
     @Override
 
     public ArrayTaskList incoming() {
-        return null;
+
+        return new ArrayTaskList();
     }
 
 

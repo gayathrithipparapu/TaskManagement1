@@ -117,7 +117,7 @@ public class LinkedTaskList extends AbstractTaskList{
 
         return current.task;
     }
-    public LinkedTaskList incoming(int from, int to)
+    /*public LinkedTaskList incoming(int from, int to)
     {
         LinkedTaskList larr=new LinkedTaskList();
         Node current=head;
@@ -131,6 +131,6 @@ public class LinkedTaskList extends AbstractTaskList{
         }
         return larr;
 
-    }
+    }*/
 
 }

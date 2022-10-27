@@ -1,11 +1,13 @@
 package mx.tc.j2se.tasks;
-
 import java.time.LocalDateTime;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 
 public class Task {
     String title;
-    int start;
+    LocalDateTime start;
 
     @Override
     public String toString() {
@@ -22,18 +24,19 @@ public class Task {
                 '}';
     }
 
-    int end;
-    int interval;
-    int time;
+    LocalDateTime end;
+    Long interval;
+
+    LocalDateTime time;
     boolean status;
     boolean active;
-    int current;
+    LocalDateTime current;
     boolean repeated;
 
 
-    public Task (String title, int time){
+    public Task (String title, LocalDateTime time){
         try {
-            if ( time< 0) {
+            if (time.getHour()< 0 && time.getHour()<0) {
                 throw new IllegalArgumentException();
             }
         }
@@ -50,9 +53,9 @@ public class Task {
         this.repeated=false;
         this.status=true;
     }
-    public Task(String title, int start, int end, int interval) {
+    public Task(String title, LocalDateTime start, LocalDateTime end, Long interval) {
         try {
-            if (start < 0 || end < 0) {
+            if (start.getHour() < 0 || end.getHour()< 0) {
                 throw new IllegalArgumentException();
             }
         }
@@ -101,14 +104,14 @@ public class Task {
         this.status=active;
     }
     // sets status of task to active
-    public int getTime()
+    public LocalDateTime getTime()
     {
         if(isRepeated())
             return getStartTime();
         return time;
     }
     //returns time if task is not repeated
-    public void setTime(int time)
+    public void setTime(LocalDateTime time)
     {
         if(isRepeated())
            repeated=false;
@@ -118,25 +121,25 @@ public class Task {
         }
 
     }
-    public int getStartTime()
+    public LocalDateTime getStartTime()
     {
         if(isRepeated() == false)
             return time;
         return start;
     }
-    public int getEndTime(int time)
+    public LocalDateTime getEndTime()
     {
         if(isRepeated() == false)
             return time;
         return end;
     }
-    public int getRepeatInterval()
+    public Long getRepeatInterval()
     {
         if(isRepeated() == false)
-            return 0;
+            return Long.valueOf(0);
         return interval;
     }
-    public void setTime(int start, int end, int interval) {
+    public void setTime(LocalDateTime start, LocalDateTime end, Long interval) {
         this.start = start;
         this.end = end;
         this.interval = interval;
@@ -151,19 +154,21 @@ public class Task {
         return repeated;
 
     }
-    public int nextTimeAfter (int current)
+    public LocalDateTime nextTimeAfter (LocalDateTime current)
     {
 
-        if((current+interval)<end )
+        if((current.plusHours(interval)).isBefore(end) )
         {
             status=true;
-            current = current + interval;
+            current = current.plusHours(interval);
             return current;
         }
         else
         {
             status=false;
-            return -1;
+            return LocalDateTime.parse("-1");
         }
     }
+
+
 }
