@@ -1,21 +1,15 @@
 package mx.tc.j2se.tasks;
+import java.time.LocalDateTime;
 import java.util.Iterator;
-interface A
-{
-    ArrayTaskList incoming();
-
-}
-interface B
-{
-   LinkedTaskList incoming();
-}
-
-
+import java.util.stream.Stream;
+import java.util.function.Function;
 
 public abstract class AbstractTaskList {
     int size;
     ArrayTaskList arr;
     LinkedTaskList l;
+    LocalDateTime from;
+    LocalDateTime to;
     private mx.tc.j2se.tasks.Task Task;
 
 
@@ -60,19 +54,24 @@ public abstract class AbstractTaskList {
             @Override
             public boolean hasNext() {
                 // OverRiding Default hasNext  Method//
-                return currentIndex < size;
+
+                return currentIndex < size() && currentIndex!=size();
             }
 
             @Override
             public Task next() {
                 // OverRiding Default next  Method//
-                return getTask(currentIndex++);
+                if(hasNext())
+                {
+                    return getTask(currentIndex++);
+                }
+                else
+                {
+                    throw new UnsupportedOperationException();
+                }
             }
 
-            public void remove() {
-                // OverRiding Default Remove  Method.
-                throw new UnsupportedOperationException();
-            }
+
         };
         return it;
     }
@@ -102,6 +101,18 @@ public abstract class AbstractTaskList {
         }
         return false;
     }
+    public  Stream<Task> getStream(int index)
+    {
+        return Stream.generate(()->getTask(index));
+    }
+    public ArrayTaskList incoming(LocalDateTime from,LocalDateTime to)
+    {
+        ArrayTaskList arr=new ArrayTaskList();
+
+        //arr.add(getStream(i));
+        return arr;
+    }
+
 
 }
 

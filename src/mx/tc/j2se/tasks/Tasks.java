@@ -9,24 +9,27 @@ public class Tasks {
     public static Iterator<Task> incoming(Iterator<Task> tasks, LocalDateTime start, LocalDateTime end)
     {
 
-        ArrayTaskList l=new ArrayTaskList() {
+        AbstractTaskList l=new ArrayTaskList() {
             public Iterator<Task> Iterator()
             {
                 return super.iterator();
-
-        }
+            }
         };
+
         while (tasks.hasNext())
         {
-            if(tasks.next().getStartTime().isAfter(start) && tasks.next().getEndTime().isBefore(end))
+            Task tmp=tasks.next();
+            //System.out.println(tmp.getEndTime()+"  "+end+"   "+tmp.getEndTime().isAfter(end) );
+            if(tmp.getEndTime().isAfter(end) && tmp.getStartTime().isBefore(start) )
             {
-                l.add(tasks.next());
+                l.add(tmp);
 
             }
         }
         return l.iterator();
 
     }
+
 
 
 }

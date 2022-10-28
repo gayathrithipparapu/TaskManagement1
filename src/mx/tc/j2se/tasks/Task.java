@@ -45,7 +45,7 @@ public class Task {
             System.out.print("time cannnot be negative");
 
         }
-        // if input time given is negative, exception is thrown.
+        /** if input time given is negative, exception is thrown*/
 
 
         this.title=title;
@@ -63,7 +63,7 @@ public class Task {
         {
             System.out.println("time cannnot be negative");
         }
-        // if input start or end time given is negative, exception is thrown.
+        /**if input start or end time given is negative, exception is thrown*/
         try
         {
             if(interval<=0)
@@ -75,7 +75,7 @@ public class Task {
         {
             System.out.println(e.getMessage());
         }
-        // if interval is zero or is negative, exception is thrown.
+        /** if interval is zero or is negative, exception is thrown.*/
 
         this.title=title;
         this.start=start;
