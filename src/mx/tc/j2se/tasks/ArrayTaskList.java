@@ -1,13 +1,13 @@
 package mx.tc.j2se.tasks;
 import java.util.Arrays;
-
+import java.util.stream.*;
 
 public class ArrayTaskList extends AbstractTaskList{
 
     // Define initialcapacity, size of elements of custom ArrayList
-    private static final int initialcapacity = 10;
+    private static final int initialcapacity = 1;
     private int size = 0;
-    private Task elementData[] = {};
+    public Task elementData[] = {};
 
     /**
      * constructor of ArrayTaskList
@@ -93,6 +93,11 @@ public class ArrayTaskList extends AbstractTaskList{
         for (int i = 0; i < size; i++) {
             System.out.println(elementData[i].toString());
         }
+    }
+    public Stream<Task> getStream()
+    {
+        return Stream.of(elementData);
+
     }
     //displays task
     /*public ArrayTaskList incoming(int from, int to)

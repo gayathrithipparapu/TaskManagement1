@@ -1,7 +1,10 @@
 package mx.tc.j2se.tasks;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.*;
 import java.util.function.Function;
 
 public abstract class AbstractTaskList {
@@ -10,6 +13,7 @@ public abstract class AbstractTaskList {
     LinkedTaskList l;
     LocalDateTime from;
     LocalDateTime to;
+
     private mx.tc.j2se.tasks.Task Task;
 
 
@@ -101,16 +105,20 @@ public abstract class AbstractTaskList {
         }
         return false;
     }
-    public  Stream<Task> getStream(int index)
+    public int hashcode()
     {
-        return Stream.generate(()->getTask(index));
+        return Objects.hash(size,Task);
+    }
+    public  Stream<Task> getStream()
+    {
+        ArrayTaskList a=new ArrayTaskList();
+        Stream<Task> s=Stream.of(a.elementData);
+        return s;
     }
     public ArrayTaskList incoming(LocalDateTime from,LocalDateTime to)
     {
-        ArrayTaskList arr=new ArrayTaskList();
-
-        //arr.add(getStream(i));
-        return arr;
+        ArrayTaskList ar=new ArrayTaskList();
+        return null ;
     }
 
 

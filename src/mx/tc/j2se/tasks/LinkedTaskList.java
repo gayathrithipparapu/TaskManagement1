@@ -1,5 +1,7 @@
 package mx.tc.j2se.tasks;
 
+import java.util.stream.Stream;
+
 public class LinkedTaskList extends AbstractTaskList{
     Node head; // head of list
     int size=0;
@@ -116,6 +118,11 @@ public class LinkedTaskList extends AbstractTaskList{
         }
 
         return current.task;
+    }
+    public Stream<Task> getStream()
+    {
+        return null;
+
     }
     /*public LinkedTaskList incoming(int from, int to)
     {

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import  java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,12 +24,10 @@ public class Main {
         // System.out.println(t2.nextTimeAfter(LocalDateTime.of(2022, Month.valueOf("AUGUST"),24,8,15)));
 
 
-       //ArrayTaskList at=new ArrayTaskList();
+        ArrayTaskList at=new ArrayTaskList();
         /** adding elements to array */
-        /*
         at.add(t1);
         at.add(t2);
-        */
         /** removing and displaying array */
         /*
         at.remove(t1);
@@ -67,22 +66,23 @@ public class Main {
        AbstractTaskList atl=obj3.createTaskList(ListTypes.types.ARRAY);
        */
         /**Implementation of equals and hashcode method*/
-        /*ArrayTaskList at1=new ArrayTaskList();
+       /* ArrayTaskList at1=new ArrayTaskList();
         at1.add(t1);
-        ArrayTaskList at2=new ArrayTaskList();
+
+        *//*ArrayTaskList at2=new ArrayTaskList();
         at2.add(t1);
         System.out.println(at1.equals(at2));
         System.out.println(atl.hashCode());
         System.out.println(obj3.hashCode());
-        System.out.println(t3.hashCode());
-        */
+        System.out.println(t3.hashCode());*/
 
-        AbstractTaskList atl=new ArrayTaskList();
+
+        /*AbstractTaskList atl=new ArrayTaskList();
         atl.add(t1);
         atl.add(t2);
         atl.add(t3);
-        atl.add(t4);
-        Iterator<Task> itr=atl.iterator();
+        atl.add(t4);*/
+        //Iterator<Task> itr=atl.iterator();
 
 
        /** PRINTS VALUES USING ITERATOR*/
@@ -94,12 +94,16 @@ public class Main {
 
         }*/
         /** INCOMING METHOD USING ITERATOR*/
-        Iterator<Task> itr1=Tasks.incoming(itr,LocalDateTime.of(2022, Month.valueOf("AUGUST"),25,8,0),LocalDateTime.of(2022, Month.valueOf("AUGUST"),26,8,0));
+        /*Iterator<Task> itr1=Tasks.incoming(itr,LocalDateTime.of(2022, Month.valueOf("AUGUST"),25,8,0),LocalDateTime.of(2022, Month.valueOf("AUGUST"),26,8,0));
         while(itr1.hasNext())
         {
             System.out.println(itr1.next().getTitle());
         }
 
+
+*/
+        Stream<Task> t= at.getStream();
+        t.forEach(System.out::println);
 
 
     }
