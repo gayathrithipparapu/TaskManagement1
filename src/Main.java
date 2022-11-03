@@ -5,11 +5,8 @@ import java.time.Month;
 import  java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.stream.Stream;
-
 public class Main {
     public static void main(String[] args) {
-
-
 
         Task t1=new Task("Lunch with Beautiful girl", LocalDateTime.of(2022, Month.valueOf("AUGUST"),24,8,15));
         Task t2=new Task("Morning run",LocalDateTime.of(2022, Month.valueOf("MARCH"),1,8,15),LocalDateTime.of(2022, Month.valueOf("SEPTEMBER"),1,8,15),24L);
@@ -23,11 +20,12 @@ public class Main {
         /**to get next time after */
         // System.out.println(t2.nextTimeAfter(LocalDateTime.of(2022, Month.valueOf("AUGUST"),24,8,15)));
 
-
         ArrayTaskList at=new ArrayTaskList();
         /** adding elements to array */
         at.add(t1);
         at.add(t2);
+        at.add(t3);
+        at.add(t4);
         /** removing and displaying array */
         /*
         at.remove(t1);
@@ -76,14 +74,12 @@ public class Main {
         System.out.println(obj3.hashCode());
         System.out.println(t3.hashCode());*/
 
-
         /*AbstractTaskList atl=new ArrayTaskList();
         atl.add(t1);
         atl.add(t2);
         atl.add(t3);
         atl.add(t4);*/
         //Iterator<Task> itr=atl.iterator();
-
 
        /** PRINTS VALUES USING ITERATOR*/
         /*while(itr.hasNext())
@@ -99,12 +95,13 @@ public class Main {
         {
             System.out.println(itr1.next().getTitle());
         }
-
-
-*/
-        Stream<Task> t= at.getStream();
+        */
+        /** Getting array as stream*/
+        //Stream<Task> t= at.getStream();
+        Stream<Task> t= at.incoming(LocalDateTime.of(2022, Month.valueOf("JANUARY"),25,8,0),LocalDateTime.of(2022, Month.valueOf("NOVEMBER"),26,8,0)).getStream();
         t.forEach(System.out::println);
-
+        //System.out.println();
+        //System.out.println(at.incoming(LocalDateTime.of(2022, Month.valueOf("AUGUST"),25,8,0),LocalDateTime.of(2022, Month.valueOf("AUGUST"),26,8,0)).getStream());
 
     }
 

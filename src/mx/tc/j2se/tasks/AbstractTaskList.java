@@ -14,7 +14,7 @@ public abstract class AbstractTaskList {
     LocalDateTime from;
     LocalDateTime to;
 
-    private mx.tc.j2se.tasks.Task Task;
+    private static mx.tc.j2se.tasks.Task Task;
 
 
     public void add(Task task) {
@@ -108,6 +108,7 @@ public abstract class AbstractTaskList {
     public int hashcode()
     {
         return Objects.hash(size,Task);
+
     }
     public  Stream<Task> getStream()
     {
@@ -115,11 +116,16 @@ public abstract class AbstractTaskList {
         Stream<Task> s=Stream.of(a.elementData);
         return s;
     }
-    public ArrayTaskList incoming(LocalDateTime from,LocalDateTime to)
+    public static ArrayTaskList incoming(LocalDateTime from, LocalDateTime to)
     {
         ArrayTaskList ar=new ArrayTaskList();
-        return null ;
+        //ar.getStream().filter(t->from.isBefore(Task.getStartTime()) &&  to.isAfter(Task.getEndTime()));
+        ar.getStream().filter(t->Task.getEndTime().isAfter(from) && Task.getStartTime().isBefore(to));
+        return ar;
+
     }
+
+
 
 
 }
